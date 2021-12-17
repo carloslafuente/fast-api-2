@@ -3,7 +3,7 @@ from typing import List
 # FastAPI
 from fastapi import FastAPI, status
 # Models
-from models.user import User
+from models.user import User, UserSignup
 
 
 class UserController():
@@ -13,12 +13,27 @@ class UserController():
     def set_controllers(self):
         @self.app.post(
             "/user",
-            response_model=User,
+            response_model=UserSignup,
             status_code=status.HTTP_201_CREATED,
             summary="Create new user",
             tags=["User"]
         )
-        def create_user():
+        def sign_up():
+            """
+            Sign Up an user.
+
+            Register an user in the app.
+
+            Parameters:
+                - user: UserSignup
+
+            Returns a json with the basic User information.
+                - id: UUID
+                - email: EmailStr
+                - names: str
+                - lastname: str
+                - birth_date: str
+            """
             pass
 
         @self.app.post(
