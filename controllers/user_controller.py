@@ -1,7 +1,8 @@
 # Python
 from typing import List
+import json
 # FastAPI
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, Body
 # Models
 from models.user import User, UserSignup
 
@@ -13,12 +14,12 @@ class UserController():
     def set_controllers(self):
         @self.app.post(
             "/user",
-            response_model=UserSignup,
+            response_model=User,
             status_code=status.HTTP_201_CREATED,
             summary="Create new user",
             tags=["User"]
         )
-        def sign_up():
+        def sign_up(user: UserSignup = Body(...)):
             """
             Sign Up an user.
 
@@ -32,9 +33,19 @@ class UserController():
                 - email: EmailStr
                 - names: str
                 - lastname: str
-                - birth_date: str
+                - birth_date: date
             """
-            pass
+            path = 'C:\\Users\\BAIRESDEV\\Documents\\Platzi\\practices\\fast-api-avanzado\\project\\data\\users.json'
+            user_dict = user.dict()
+            with open(path, "r+", encoding="utf-8") as f:
+                users = json.load(f)
+                user_dict["id"] = str(user_dict["id"])
+                user_dict["birth_date"] = str(user_dict["birth_date"])
+                users.append(user_dict)
+                f.seek(0)
+                f.write(json.dumps(users))
+
+            return user_dict
 
         @self.app.post(
             "/login",

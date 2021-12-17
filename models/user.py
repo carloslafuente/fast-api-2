@@ -39,5 +39,5 @@ class User(BaseUser):
     birth_date: Optional[date] = Field(default=None)
 
 
-class UserSignup(BaseUser, PasswordMixin):
+class UserSignup(User, PasswordMixin):
     pass
