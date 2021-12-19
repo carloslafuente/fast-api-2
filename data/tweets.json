@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "content": "This is the tweet content from the user Juan Perez.",
+    "creation_date": "2021-12-19 13:00:14.345249",
+    "update_date": "2021-12-19 17:00:24.726000+00:00",
+    "user": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "email": "juanperez@example.com",
+      "username": "juanperez",
+      "names": "Juan",
+      "lastname": "Perez",
+      "birth_date": "1980-12-19"
+    }
+  }
+]

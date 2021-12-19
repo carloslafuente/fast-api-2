@@ -59,13 +59,29 @@ class UserController():
 
         @self.app.get(
             "/users",
-            response_model=List,
+            response_model=List[User],
             status_code=status.HTTP_200_OK,
             summary="Get all users",
             tags=["User"]
         )
         def get_users():
-            pass
+            """
+            Show all users.
+
+            Show all users in the app.
+
+            Returns a json with the basic User information.
+                - id: UUID
+                - email: EmailStr
+                - names: str
+                - lastname: str
+                - birth_date: date
+            """
+            path = 'C:\\Users\\BAIRESDEV\\Documents\\Platzi\\practices\\fast-api-avanzado\\project\\data\\users.json'
+            with open(path, "r", encoding="utf-8") as f:
+                users = json.load(f)
+                
+            return users
 
         @self.app.get(
             "/users/{user_id}",
